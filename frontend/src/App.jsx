@@ -9,6 +9,7 @@ import Applications from './components/Applications';
 import Logs from './components/Logs';
 import ResumeView from './components/ResumeView';
 import SettingsPage from './pages/SettingsPage';
+import Browser from './components/Browser';
 import { createWebSocket, fetchWorkflowStatus } from './api';
 
 const PAGES = {
@@ -18,6 +19,7 @@ const PAGES = {
   applications: { title: 'Applications', sub: 'Full application history & tracking' },
   resume: { title: 'Resume', sub: 'Parsed resume data & profile' },
   logs: { title: 'Live Logs', sub: 'Real-time execution terminal' },
+  browser: { title: 'Live Browser', sub: 'Watch the agent control Chrome live' },
   settings: { title: 'Settings', sub: 'Manage your API keys and profile' },
 };
 
@@ -111,6 +113,7 @@ function AppContent() {
       case 'applications': return <Applications toast={toast} />;
       case 'resume': return <ResumeView toast={toast} />;
       case 'logs': return <Logs logs={logs} setLogs={setLogs} />;
+      case 'browser': return <Browser />;
       case 'settings': return <SettingsPage />;
       default: return <Dashboard wfStatus={wfStatus} toast={toast} />;
     }

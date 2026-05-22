@@ -1,4 +1,4 @@
-import { LayoutDashboard, Activity, Briefcase, FileText, User, Terminal, LogOut, Cpu } from 'lucide-react';
+import { LayoutDashboard, Activity, Briefcase, FileText, User, Terminal, LogOut, Cpu, Monitor } from 'lucide-react';
 
 const NAV = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -7,6 +7,7 @@ const NAV = [
   { id: 'applications', label: 'Applications', icon: FileText },
   { id: 'resume', label: 'Resume', icon: User },
   { id: 'logs', label: 'Live Logs', icon: Terminal },
+  { id: 'browser', label: 'Live Browser', icon: Monitor },
   { id: 'settings', label: 'Settings', icon: Cpu },
 ];
 
