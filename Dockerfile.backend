@@ -1,0 +1,34 @@
+FROM mcr.microsoft.com/playwright/python:v1.40.0-jammy
+
+# Install Xvfb, fluxbox, x11vnc, novnc, and websockify
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y \
+    xvfb \
+    fluxbox \
+    x11vnc \
+    novnc \
+    websockify \
+    wget \
+    gnupg \
+    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
+    && apt-get update && apt-get install -y google-chrome-stable \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Ensure playwright deps are ready for real chrome
+RUN playwright install-deps chrome
+
+COPY . .
+
+# Make the start script executable
+RUN chmod +x /app/start.sh
+
+# Expose NoVNC port in addition to the app port
+EXPOSE 8000 6080
+
+CMD ["/app/start.sh"]

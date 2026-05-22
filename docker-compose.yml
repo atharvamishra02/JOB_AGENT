@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: job_agent_backend
+    env_file:
+      - .env
+    environment:
+      - DOCKER_ENV=true
+    volumes:
+      - ./db:/app/db
+      - ./uploads:/app/uploads
+      - ./browser_data:/app/browser_data
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+      - "6080:6080"
+    # To run Playwright headless browsers, IPC and memory configs might be needed:
+    shm_size: '1gb'
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: job_agent_frontend
+    restart: unless-stopped
+    ports:
+      - "8082:80"
+    depends_on:
+      - backend

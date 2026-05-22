@@ -1,0 +1,41 @@
+# Environment variables & secrets
+.env
+.env.local
+.env.*
+
+# Databases
+*.db
+job_agent.db
+
+# Logs
+*.log
+
+# Playwright / Browser data (login sessions & heavy caches)
+browser_data/
+
+# Uploads (user resumes — personal data)
+uploads/
+
+# Deployment archives
+*.zip
+
+# Personal data files — DO NOT COMMIT
+learned_placeholders.json
+sample_resume.txt
+Atharva_Mishra_resume.pdf
+*.pdf
+
+# Node modules / frontend builds
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Python cache / virtual envs
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+venv/
+.venv/
+env/
