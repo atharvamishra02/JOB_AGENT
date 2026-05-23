@@ -3,6 +3,12 @@
 .env.local
 .env.*
 
+# SSH keys — NEVER COMMIT
+private
+*.pem
+id_rsa
+id_ed25519
+
 # Databases
 *.db
 job_agent.db

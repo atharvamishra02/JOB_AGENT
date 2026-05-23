@@ -49,8 +49,8 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          password: ${{ secrets.DEPLOY_PASS }}
+          username: root
+          key: ${{ secrets.SSH_KEY }}
           script: |
             echo "--- Starting Deployment Process ---"
             
