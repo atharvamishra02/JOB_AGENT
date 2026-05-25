@@ -86,13 +86,13 @@ async def google_login(request: Request):
     """Redirect user to Google consent screen."""
     if not GOOGLE_CLIENT_ID:
         raise HTTPException(501, "Google OAuth not configured")
-    redirect_uri = str(request.url_for("google_callback"))
+    redirect_uri = f"{FRONTEND_URL}/api/auth/google/callback"
     return RedirectResponse(get_google_auth_url(redirect_uri))
 
 @router.get("/google/callback")
 async def google_callback(request: Request, code: str = Query(...)):
     """Handle Google OAuth callback."""
-    redirect_uri = str(request.url_for("google_callback"))
+    redirect_uri = f"{FRONTEND_URL}/api/auth/google/callback"
     user_info = await exchange_google_code(code, redirect_uri)
     email = user_info.get("email", "")
     name = user_info.get("name", "")
@@ -113,13 +113,13 @@ async def github_login(request: Request):
     """Redirect user to GitHub consent screen."""
     if not GITHUB_CLIENT_ID:
         raise HTTPException(501, "GitHub OAuth not configured")
-    redirect_uri = str(request.url_for("github_callback"))
+    redirect_uri = f"{FRONTEND_URL}/api/auth/github/callback"
     return RedirectResponse(get_github_auth_url(redirect_uri))
 
 @router.get("/github/callback")
 async def github_callback(request: Request, code: str = Query(...)):
     """Handle GitHub OAuth callback."""
-    redirect_uri = str(request.url_for("github_callback"))
+    redirect_uri = f"{FRONTEND_URL}/api/auth/github/callback"
     user_info = await exchange_github_code(code, redirect_uri)
     email = user_info.get("email", "")
     name = user_info.get("name", "")
