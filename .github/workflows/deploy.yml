@@ -1,4 +1,6 @@
 name: CI/CD Pipeline
+# Triggered via main branch push; deploys using SSH key authentication to VPS.
+
 
 on:
   push:
