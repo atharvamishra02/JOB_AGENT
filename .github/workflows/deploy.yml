@@ -77,10 +77,10 @@ jobs:
             git fetch origin
             git reset --hard origin/main
 
-            # 4. Clean Docker cache and rebuild images
+            # 4. Rebuild and restart services using Docker cache for speed
             echo "Rebuilding and restarting services..."
             docker compose down
-            docker compose build --no-cache
+            docker compose build
             docker compose up -d
 
             echo "--- Deployment Successful! ---"
