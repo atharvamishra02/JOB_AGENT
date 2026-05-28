@@ -54,7 +54,6 @@ jobs:
           host: ${{ secrets.DEPLOY_HOST }}
           port: ${{ secrets.DEPLOY_PORT }}
           username: root
-          password: ${{ secrets.DEPLOY_PASS }}
           key: ${{ secrets.SSH_KEY }}
           script: |
             echo "--- Starting Deployment Process ---"
