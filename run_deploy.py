@@ -11,6 +11,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 host = os.getenv("DEPLOY_HOST", "")
 user = os.getenv("DEPLOY_USER", "root")
 password = os.getenv("DEPLOY_PASS", "")
+port = int(os.getenv("DEPLOY_PORT", "22"))
 
 if not host or not password:
     print("ERROR: Set DEPLOY_HOST and DEPLOY_PASS in your .env file.")
@@ -19,7 +20,7 @@ if not host or not password:
 print("Connecting to server...")
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-ssh.connect(host, username=user, password=password)
+ssh.connect(host, port=port, username=user, password=password)
 
 print("Connected! Finding deployment directory...")
 stdin, stdout, stderr = ssh.exec_command("find / -maxdepth 3 -name docker-compose.yml -path '*/job_agent/*'")
