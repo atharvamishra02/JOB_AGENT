@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+# Clean up any leftover Xvfb lock files from previous runs
+rm -f /tmp/.X99-lock
+rm -rf /tmp/.X11-unix/X99
+
 # Start Xvfb
 Xvfb :99 -screen 0 1366x768x16 -nolisten tcp -nolisten unix &
 export DISPLAY=:99
