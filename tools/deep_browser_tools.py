@@ -328,6 +328,12 @@ def get_session_manager(p, user_data_dir: str) -> DeepBrowserTools:
             "--no-sandbox",
             "--disable-popup-blocking",
             "--disable-dev-shm-usage",
+            "--disable-gpu",
+            "--js-flags=--max-old-space-size=512",
+            "--disable-extensions",
+            "--no-first-run",
+            "--no-default-browser-check",
+            "--mute-audio",
         ],
         user_agent=(
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "

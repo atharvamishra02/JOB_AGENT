@@ -20,6 +20,14 @@ services:
       - "6080:6080"
     # To run Playwright headless browsers, IPC and memory configs might be needed:
     shm_size: '1gb'
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 1500M
+        reservations:
+          cpus: '0.2'
+          memory: 256M
 
   frontend:
     build:
@@ -31,3 +39,9 @@ services:
       - "8082:80"
     depends_on:
       - backend
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 128M
+

@@ -79,7 +79,18 @@ def scrape_jobs_real(
         launch_opts = dict(
             user_data_dir=user_data_dir,
             headless=False,  # Reverted to False to display on NoVNC X11 server
-            args=["--disable-blink-features=AutomationControlled", "--no-sandbox", "--disable-popup-blocking", "--disable-dev-shm-usage"],
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+                "--disable-popup-blocking",
+                "--disable-dev-shm-usage",
+                "--disable-gpu",
+                "--js-flags=--max-old-space-size=512",
+                "--disable-extensions",
+                "--no-first-run",
+                "--no-default-browser-check",
+                "--mute-audio",
+            ],
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                        "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
             viewport={"width": 1366, "height": 768},
