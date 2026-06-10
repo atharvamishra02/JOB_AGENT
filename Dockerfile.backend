@@ -25,8 +25,8 @@ RUN playwright install-deps chrome
 
 COPY . .
 
-# Make the start script executable
-RUN chmod +x /app/start.sh
+# Make the start script executable and fix line endings
+RUN sed -i 's/\r$//' /app/start.sh && chmod +x /app/start.sh
 
 # Expose NoVNC port in addition to the app port
 EXPOSE 8000 6080
