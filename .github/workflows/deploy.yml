@@ -57,6 +57,7 @@ jobs:
           port: ${{ secrets.DEPLOY_PORT }}
           username: root
           key: ${{ secrets.SSH_KEY }}
+          command_timeout: 30m
           script: |
             echo "--- Starting Deployment Process ---"
             
